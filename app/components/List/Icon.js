@@ -11,7 +11,7 @@ const Icon = (props) => {
         iconStyle.push(styles.iconVisible);
 
     if (iconBackground)
-        iconStyle.push({backgroundColor: iconBackground})
+        iconStyle.push({backgroundColor: iconBackground});
 
     return (
         <View style={iconStyle}>

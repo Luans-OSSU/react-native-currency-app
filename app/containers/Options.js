@@ -1,5 +1,7 @@
-import React from "react";
-import {ScrollView, StatusBar} from "react-native";
+import React, { PropTypes } from "react";
+import {ScrollView, StatusBar, Linking} from "react-native";
+
+import { connectAlert } from "../components/Alert";
 
 import {ListItem, Separator} from "../components/List";
 
@@ -9,16 +11,23 @@ import {ListItem, Separator} from "../components/List";
 const ICON_COLOR = "#868686";
 const ICON_SIZE = "23";
 
-
-export default class Options extends React.Component {
+class Options extends React.Component {
+    static propTypes = {
+        navigation: PropTypes.object,
+        alertWithType: PropTypes.func,
+    }
 
     handlePressTheme = () => {
-        console.log("press theme");
+        this.props.navigation.navigate("Themes");
     }
 
     handleSitePress = () => {
-        console.log("press site");
+        Linking.openURL("hSSttp://fixer.io")
+            .catch(err => {
+                this.props.alertWithType("error", "Error", "Fixer.io can't be opend");
+            });
     }
+
     render() {
 
         return (
@@ -38,3 +47,5 @@ export default class Options extends React.Component {
         )
     }
 }
+
+export default connectAlert(Options);
