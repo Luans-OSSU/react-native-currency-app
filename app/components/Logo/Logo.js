@@ -68,6 +68,7 @@ export default class Logo extends React.Component {
         const imageStyle = [
             styles.image,
             { width: this.imageWidth },
+            this.props.tintColor ? { tintColor: this.props.tintColor} : null,
         ];
 
         return (
