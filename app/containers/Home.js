@@ -8,9 +8,11 @@ import { ClearButton } from "../components/Button";
 import { LastConverted } from "../components/Text";
 import { Header } from "../components/Header";
 
+import {connectAlert} from "../components/Alert";
+
 import {connect} from "react-redux";
 
-import { swapCurrencies, changeCurrencyAmount } from "../actions/currencies";
+import { swapCurrencies, changeCurrencyAmount, getInitialConversion } from "../actions/currencies";
 
 
 class Home extends React.Component {
@@ -25,6 +27,17 @@ class Home extends React.Component {
         isFetching: PropTypes.bool,
         lastConvertedDate: PropTypes.object,
         primaryColor: PropTypes.string,
+        alertWithType: PropTypes.func,
+        currencyError: PropTypes.string,
+    }
+
+    componentWillMount() {
+        this.props.dispatch(getInitialConversion());
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if(nextProps.currencyError && nextProps.currencyError !== this.props.currencyError)
+            this.props.alertWithType("error", "Error", nextProps.currencyError);
     }
 
     handlePressBaseCurrency = () => {
@@ -102,7 +115,8 @@ const mapStateToProps = (state) => {
         isFetching: conversionSelector.isFetching,
         lastConvertedDate: conversionSelector.date ? new Date(conversionSelector.date) : new Date(),
         primaryColor: state.themes.primaryColor,
+        currencyError: state.currencies.error,
     }
 }
 
-export default connect(mapStateToProps)(Home);
+export default connect(mapStateToProps)(connectAlert(Home));

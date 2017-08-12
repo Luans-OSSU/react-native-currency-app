@@ -1,4 +1,4 @@
-import {SWAP_CURRENCY, CHANGE_CURRENCY_AMOUNT, CHANGE_BASE_CURRENCY, CHANGE_QUOTE_CURRENCY} from "../lib/constants";
+import {SWAP_CURRENCY, CHANGE_CURRENCY_AMOUNT, CHANGE_BASE_CURRENCY, CHANGE_QUOTE_CURRENCY, GET_INITIAL_CONVERSION} from "../lib/constants";
 
 export const swapCurrencies = () => ({
     type: SWAP_CURRENCY,
@@ -18,4 +18,8 @@ export const changeBaseCurrency = (currency) => ({
 export const changeQuoteCurrency = (currency) => ({
     type: CHANGE_QUOTE_CURRENCY,
     currency,
+})
+
+export const getInitialConversion = () => ({
+    type: GET_INITIAL_CONVERSION,
 })
