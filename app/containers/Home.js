@@ -1,12 +1,12 @@
 import React from "react";
 import { View, StatusBar, KeyboardAvoidingView} from "react-native";
 
-import {Container} from "../components/Container";
-import {Logo} from "../components/Logo";
-import {InputWithButton} from "../components/TextInput";
+import { Container } from "../components/Container";
+import { Logo } from "../components/Logo";
+import { InputWithButton } from "../components/TextInput";
 import { ClearButton } from "../components/Button";
 import { LastConverted } from "../components/Text";
-import {Header} from "../components/Header";
+import { Header } from "../components/Header";
 
 const TEMP_BASE_CURRENCY = "USD";
 const TEMP_QUOTE_CURRENCY = "EUR";
